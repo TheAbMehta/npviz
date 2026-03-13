@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "npviz"
+version = "0.1.1"
+description = "visualize how neural network architectures change during training"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Abhisar Mehta" },
+]
+keywords = ["neural-network", "pruning", "visualization", "architecture", "neuroplastic", "machine-learning"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "dash>=2.14",
+    "plotly>=5.18",
+]
+
+[project.optional-dependencies]
+adapters = ["torch>=2.0"]
+pruning = ["torch>=2.0", "torch-pruning>=1.4"]
+video = ["manim>=0.18"]
+all = ["torch>=2.0", "torch-pruning>=1.4", "manim>=0.18"]
+
+[project.scripts]
+npviz = "npviz.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/TheAbMehta/npviz"
+Repository = "https://github.com/TheAbMehta/npviz"
+Issues = "https://github.com/TheAbMehta/npviz/issues"
+
+[tool.setuptools]
+packages = ["npviz", "npviz.adapters", "npviz.viewer", "npviz.video"]
+
+[tool.setuptools.package-dir]
+npviz = "."
+
+[tool.setuptools.package-data]
+npviz = [
+    "examples/**/*.jsonl",
+    "examples/**/*.py",
+    "screenshots/*.png",
+]
